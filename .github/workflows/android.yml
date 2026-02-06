@@ -9,16 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        uses: ArtemGr/buildozer-action@v1
+        uses: kivy/buildozer-action@v1
         with:
           buildozer_version: master
           command: android debug
+          repository_display_name: "HD Downloader"
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: my-hacker-app
           path: bin/*.apk
