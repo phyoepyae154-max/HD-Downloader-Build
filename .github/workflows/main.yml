@@ -1,0 +1,24 @@
+name: Build Android APK
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with Buildozer
+        uses: ArtemGr/buildozer-action@v1
+        with:
+          buildozer_version: master
+          command: android debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-hacker-app
+          path: bin/*.apk
+
