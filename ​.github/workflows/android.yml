@@ -1,5 +1,10 @@
 name: Build Android APK
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,4 +21,3 @@ jobs:
         with:
           name: my-hacker-app
           path: bin/*.apk
-          
